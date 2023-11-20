@@ -4,11 +4,11 @@ board = [
     {'0': '-', '1': '-', '2': '-'}
 ]
 import random
-
+choose_players =int(input("Chose 1 for 1v1 or 2 for 1vPC: "))
 def player1 ():
     print("Player 1 Turn")
-    input1_column = random.randint(0,2)
-    input1c_row = random.randint(0,2)
+    input1_column = int(input("Choose a column: "))
+    input1c_row = int(input("Choose a row: "))
     if board[input1c_row][str(input1_column)] == '-':
         board[input1c_row][str(input1_column)] = 'X'
     else:
@@ -17,8 +17,12 @@ def player1 ():
 
 def player2 ():
     print("Player 2 Turn")
-    input1_column = random.randint(0,2)
-    input1c_row = random.randint(0,2)
+    if choose_players == 1:
+        input1_column = int(input("Choose a column: "))
+        input1c_row = int(input("Choose a row: "))
+    else:
+        input1_column = random.randint(0,2)
+        input1c_row = random.randint(0,2)
     if board[input1c_row][str(input1_column)] == '-':
         board[input1c_row][str(input1_column)] = 'O'
     else:
@@ -59,7 +63,6 @@ for i in range(9):
         if check_winner() == False:
             print_board()
             print("Player 1 has won")
-            win = False
             break
     else:
         print_board()
@@ -67,7 +70,6 @@ for i in range(9):
         if check_winner() == False:
             print_board()
             print("Player 2 has won")
-            win = False
             break
 else:
     print_board()
