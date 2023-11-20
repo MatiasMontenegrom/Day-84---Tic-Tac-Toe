@@ -3,11 +3,12 @@ board = [
     {'0': '-', '1': '-', '2': '-'},
     {'0': '-', '1': '-', '2': '-'}
 ]
+import random
 
 def player1 ():
     print("Player 1 Turn")
-    input1_column = int(input("Choose a column 0-2 "))
-    input1c_row = int(input("Choose a row 0-2 "))
+    input1_column = random.randint(0,2)
+    input1c_row = random.randint(0,2)
     if board[input1c_row][str(input1_column)] == '-':
         board[input1c_row][str(input1_column)] = 'X'
     else:
@@ -16,8 +17,8 @@ def player1 ():
 
 def player2 ():
     print("Player 2 Turn")
-    input1_column = int(input("Choose a column 0-2 "))
-    input1c_row = int(input("Choose a row 0-2 "))
+    input1_column = random.randint(0,2)
+    input1c_row = random.randint(0,2)
     if board[input1c_row][str(input1_column)] == '-':
         board[input1c_row][str(input1_column)] = 'O'
     else:
@@ -49,20 +50,28 @@ def check_winner():
 
     return True
 
+
 win = True
-while win:
+for i in range(9):
+    if i%2==0:
+        print_board()
+        player1 ()
+        if check_winner() == False:
+            print_board()
+            print("Player 1 has won")
+            win = False
+            break
+    else:
+        print_board()
+        player2 ()
+        if check_winner() == False:
+            print_board()
+            print("Player 2 has won")
+            win = False
+            break
+else:
     print_board()
-    player1 ()
-    if check_winner() == False:
-        print("Player 1 has won")
-        win = False
-        break
-    print_board()
-    player2 ()
-    if check_winner() == False:
-        print("Player 2 has won")
-        win = False
-        break
-        
-    
+    print("The game is a draw")
+
+
 
