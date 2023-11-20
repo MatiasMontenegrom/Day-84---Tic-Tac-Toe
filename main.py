@@ -1,14 +1,19 @@
+import random
 board = [
     {'0': '-', '1': '-', '2': '-'},
     {'0': '-', '1': '-', '2': '-'},
     {'0': '-', '1': '-', '2': '-'}
 ]
-import random
-choose_players =int(input("Chose 1 for 1v1 or 2 for 1vPC: "))
+
+choose_players =int(input("Chose 1 for 1vs1 or 2 for 1vsPC or 3 for PCvsPC: "))
 def player1 ():
     print("Player 1 Turn")
-    input1_column = int(input("Choose a column: "))
-    input1c_row = int(input("Choose a row: "))
+    if choose_players == 3:
+        input1_column = random.randint(0,2)
+        input1c_row = random.randint(0,2)
+    else:
+        input1_column = int(input("Choose a column: "))
+        input1c_row = int(input("Choose a row: "))
     if board[input1c_row][str(input1_column)] == '-':
         board[input1c_row][str(input1_column)] = 'X'
     else:
@@ -55,7 +60,6 @@ def check_winner():
     return True
 
 
-win = True
 for i in range(9):
     if i%2==0:
         print_board()
